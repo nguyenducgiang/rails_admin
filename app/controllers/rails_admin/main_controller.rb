@@ -9,6 +9,7 @@ module RailsAdmin
     before_action :get_model, except: RailsAdmin::Config::Actions.all(:root).collect(&:action_name)
     before_action :get_object, only: RailsAdmin::Config::Actions.all(:member).collect(&:action_name)
     before_action :check_for_cancel
+    before_action { I18n.locale = :en }
 
     RailsAdmin::Config::Actions.all.each do |action|
       class_eval <<-EOS, __FILE__, __LINE__ + 1
